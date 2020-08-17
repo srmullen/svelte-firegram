@@ -1,11 +1,13 @@
 <script>
 	import UploadImage from './components/UploadImage.svelte';
+	import ImageGrid from './components/ImageGrid.svelte';
 </script>
 
 <main>
 	<h1>Your Pictures</h1>
 	<p>The sveltiest place to share your images!</p>
 	<UploadImage />
+	<ImageGrid />
 </main>
 
 <style>
@@ -14,6 +16,7 @@
 		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
+
 	}
 
 	h1 {
@@ -25,7 +28,7 @@
 
 	@media (min-width: 640px) {
 		main {
-			max-width: none;
+			max-width: 1000px;
 		}
 	}
 </style>
