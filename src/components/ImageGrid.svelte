@@ -1,5 +1,7 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
+  import { fade } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
   import { firestore } from '../firebase/config';
 
   let unsubscribe;
@@ -22,13 +24,11 @@
       unsubscribe();
     }
   })
-
-  let src = "https://firebasestorage.googleapis.com/v0/b/svelte-firegram.appspot.com/o/IMG_0700.JPG?alt=media&token=98e1316b-8f86-40fe-924b-0bd2863338cd";
 </script>
 
 <div class="image-grid">
-  {#each docs as image}
-    <div class="image-wrap">
+  {#each docs as image (image.id)}
+    <div class="image-wrap" animate:flip={{ duration: 500 }} transition:fade={{duration: 2000}}>
       <img src={image.url} alt="Oliver" />
     </div>
   {/each}
@@ -44,7 +44,6 @@
 
   .image-wrap {
     overflow: hidden;
-    height: 0;
     padding: 50% 0;
     position: relative;
     opacity: 0.8;

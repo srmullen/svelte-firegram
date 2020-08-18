@@ -215,3 +215,9 @@ The ImageGrid is used to display the images that we've uploaded to storage.
 - Use the #each template syntax to display the images.
 - Now upload images and they should display in the grid.
 - Now animate the images as they appear in the grid.
+  - `import { fade } from 'svelte/transition'`
+    - Add the fade directive. Give it duration so longer loading images still fade in.
+  - `import { flip } from 'svelte/animate'`
+  - flip stand for First, Last, Invert, Play. It is a strategy for optimizing the animation by precalculating the steps rather than doing them as the animation plays out.
+
+- Could use stores svelte stores for managing the firestore.
