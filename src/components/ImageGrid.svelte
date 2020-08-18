@@ -1,11 +1,13 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy, createEventDispatcher } from 'svelte';
   import { fade } from 'svelte/transition';
   import { flip } from 'svelte/animate';
   import { firestore } from '../firebase/config';
 
   let unsubscribe;
   let docs = [];
+
+  const dispatch = createEventDispatcher();
 
   onMount(() => {
     unsubscribe = firestore.collection('images')
@@ -29,7 +31,7 @@
 <div class="image-grid">
   {#each docs as image (image.id)}
     <div class="image-wrap" animate:flip={{ duration: 500 }} transition:fade={{duration: 2000}}>
-      <img src={image.url} alt="Oliver" />
+      <img src={image.url} alt="Oliver" on:click={() => dispatch('select', { url: image.url })} />
     </div>
   {/each}
 </div>

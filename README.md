@@ -220,4 +220,25 @@ The ImageGrid is used to display the images that we've uploaded to storage.
   - `import { flip } from 'svelte/animate'`
   - flip stand for First, Last, Invert, Play. It is a strategy for optimizing the animation by precalculating the steps rather than doing them as the animation plays out.
 
-- Could use stores svelte stores for managing the firestore.
+## Modal
+
+- Create `components/Modal.svelte` and import it into `App.svelte`
+```html
+<script>
+  export let src;
+</script>
+
+<div class="modal">
+  <img {src} alt="Modal" />
+</div>
+```
+- Give it a src and see that it displays the image. It doesn't look like a modal right now
+- Add styles so it looks like a modal.
+- Now display the modal on an image click.
+  - In ImageGrid create an event dispatcher.
+  - Attach on:click event to the image that dispatches an event with the image url.
+  - Im App listen to that event and set the modalSrc.
+  - View the iamge in the modal. Can't close it now.
+- Implement Modal closing on backdrop click.
+  - Dispatch a close event with backdrop on:click.
+  - Image closes no matter where on the page is clicked. Prevent that by adding the `self` modifier. i.e. `on:click|self`
